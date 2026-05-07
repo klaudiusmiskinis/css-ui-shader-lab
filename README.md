@@ -1,6 +1,19 @@
 # CSS UI Shader Lab
 
-Proyecto estático listo para desplegar en GitHub Pages.
+CSS UI Shader Lab es un experimento visual para probar overlays, patrones generativos y efectos tipo shader sobre una interfaz web usando únicamente HTML, CSS y JavaScript.
+
+El proyecto explora cómo filtros CSS, blend modes, capas superpuestas, dithering, halftone, scanlines, patrones geométricos y efectos inspirados en PSX pueden transformar la apariencia de una UI sin usar WebGL ni librerías externas.
+
+## Características
+
+- Panel lateral interactivo para cambiar efectos en tiempo real.
+- Overlays tipo shader con presets visuales.
+- Patrones CSS personalizables.
+- Controles de opacidad, blur, contraste, saturación y escala.
+- Cards con estilos, texturas y fondos individuales.
+- Opción para mostrar u ocultar las cards.
+- Diseño responsive.
+- Sin build, sin npm y sin dependencias de framework.
 
 ## Estructura
 
@@ -16,45 +29,3 @@ css-ui-shader-lab/
 │   └── responsive.css
 └── js/
     └── main.js
-```
-
-## Cómo verlo en local
-
-Abre `index.html` directamente en el navegador.
-
-También puedes usar un servidor local:
-
-```bash
-python -m http.server 8080
-```
-
-Después abre:
-
-```txt
-http://localhost:8080
-```
-
-## Cómo subirlo a GitHub Pages
-
-1. Crea un repositorio en GitHub.
-2. Sube todo el contenido de esta carpeta al repositorio.
-3. Ve a **Settings > Pages**.
-4. En **Build and deployment**, selecciona:
-   - Source: `Deploy from a branch`
-   - Branch: `main`
-   - Folder: `/root`
-5. Guarda los cambios.
-
-GitHub generará una URL pública para tu página.
-
-## Notas
-
-- No necesita build, npm ni dependencias locales.
-- Usa Google Fonts desde CDN.
-- Los estilos están separados por responsabilidad:
-  - `base.css`: layout global y variables.
-  - `panel.css`: panel lateral y controles.
-  - `cards.css`: cards y patrones internos.
-  - `patterns.css`: fondos tipo Magic Pattern.
-  - `shaders.css`: overlays tipo shader.
-  - `responsive.css`: responsive y accesibilidad.
