@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CSS UI Shader Lab: laboratorio de overlays, patrones CSS y filtros visuales para interfaces." />
+  <title>CSS UI Shader Lab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/base.css" />
+  <link rel="stylesheet" href="./css/panel.css" />
+  <link rel="stylesheet" href="./css/cards.css" />
+  <link rel="stylesheet" href="./css/patterns.css" />
+  <link rel="stylesheet" href="./css/shaders.css" />
+  <link rel="stylesheet" href="./css/responsive.css" />
+</head>
+
+<body class="shader-pixel pattern-polka">
+  <div class="app">
+    <aside class="shader-panel">
+      <h1>CSS Shader Lab</h1>
+      <p>Panel para probar overlays sobrepuestos a toda la UI usando CSS: filtros, blend modes, ruido, grid, halftone y distorsiones visuales.</p>
+
+      <div class="control-group">
+        <h2>Contenido</h2>
+        <label class="toggle-control">
+          <span class="toggle-label">Mostrar cards</span>
+          <input id="cardsToggle" type="checkbox" checked>
+          <span class="toggle-switch" aria-hidden="true"></span>
+        </label>
+      </div>
+
+      <div class="control-group">
+        <h2>Overlay activo</h2>
+        <div class="shader-options">
+          <label><input type="radio" name="shader" value="shader-none"><span>Sin overlay</span></label>
+          <label><input type="radio" name="shader" value="shader-pixel" checked><span>Pixel grid</span></label>
+          <label><input type="radio" name="shader" value="shader-comic"><span>Comic halftone</span></label>
+          <label><input type="radio" name="shader" value="shader-glass"><span>Glass refraction</span></label>
+          <label><input type="radio" name="shader" value="shader-noise"><span>Noise grain</span></label>
+          <label><input type="radio" name="shader" value="shader-chroma"><span>Chromatic glitch</span></label>
+          <label><input type="radio" name="shader" value="shader-liquid"><span>Liquid blobs</span></label>
+          <label><input type="radio" name="shader" value="shader-crt"><span>CRT scanlines</span></label>
+          <label><input type="radio" name="shader" value="shader-poster"><span>Poster ink</span></label>
+          <label><input type="radio" name="shader" value="shader-smear"><span>Smear streaks</span></label>
+          <label><input type="radio" name="shader" value="shader-psx"><span>PSX dither</span></label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <h2>Magic Pattern</h2>
+        <div class="range-control">
+          <label for="patternBack">Back Color</label>
+          <input id="patternBack" type="color" value="#111827">
+        </div>
+        <div class="range-control">
+          <label for="patternFront">Front Color</label>
+          <input id="patternFront" type="color" value="#ffffff">
+        </div>
+        <div class="range-control">
+          <label for="patternOpacity">Opacity <output id="patternOpacityValue">0.16</output></label>
+          <input id="patternOpacity" type="range" min="0" max="0.8" step="0.01" value="0.16">
+        </div>
+        <div class="range-control">
+          <label for="patternSpacing">Spacing <output id="patternSpacingValue">32px</output></label>
+          <input id="patternSpacing" type="range" min="12" max="90" step="1" value="32">
+        </div>
+        <div class="pattern-options">
+          <label><input type="radio" name="pattern" value="pattern-none"><span>None</span></label>
+          <label><input type="radio" name="pattern" value="pattern-wavy"><span>Wavy</span></label>
+          <label><input type="radio" name="pattern" value="pattern-rhombus"><span>Rhombus</span></label>
+          <label><input type="radio" name="pattern" value="pattern-zigzag"><span>ZigZag</span></label>
+          <label><input type="radio" name="pattern" value="pattern-moon"><span>Moon</span></label>
+          <label><input type="radio" name="pattern" value="pattern-circles"><span>Circles</span></label>
+          <label><input type="radio" name="pattern" value="pattern-diagonal"><span>Diagonal</span></label>
+          <label><input type="radio" name="pattern" value="pattern-paper"><span>Paper</span></label>
+          <label><input type="radio" name="pattern" value="pattern-isometric"><span>Isometric</span></label>
+          <label><input type="radio" name="pattern" value="pattern-polka" checked><span>Polka</span></label>
+          <label><input type="radio" name="pattern" value="pattern-lines"><span>Lines</span></label>
+          <label><input type="radio" name="pattern" value="pattern-boxes"><span>Boxes</span></label>
+          <label><input type="radio" name="pattern" value="pattern-cross"><span>Cross</span></label>
+        </div>
+      </div>
+
+      <div class="control-group">
+        <h2>Intensidad shader</h2>
+        <div class="range-control">
+          <label for="opacity">Opacidad <output id="opacityValue">0.65</output></label>
+          <input id="opacity" type="range" min="0" max="1" step="0.01" value="0.65">
+        </div>
+        <div class="range-control">
+          <label for="blur">Blur <output id="blurValue">0px</output></label>
+          <input id="blur" type="range" min="0" max="6" step="0.1" value="0">
+        </div>
+        <div class="range-control">
+          <label for="contrast">Contraste <output id="contrastValue">1.08</output></label>
+          <input id="contrast" type="range" min="0.6" max="2" step="0.01" value="1.08">
+        </div>
+        <div class="range-control">
+          <label for="saturate">Saturación <output id="saturateValue">1.20</output></label>
+          <input id="saturate" type="range" min="0" max="2.5" step="0.01" value="1.2">
+        </div>
+        <div class="range-control">
+          <label for="scale">Escala <output id="scaleValue">1.00</output></label>
+          <input id="scale" type="range" min="1" max="1.12" step="0.01" value="1">
+        </div>
+      </div>
+
+      <div class="hint">
+        El div <strong>.ui-shader</strong> está fijo por encima de toda la interfaz. Los presets cambian backgrounds, filtros, blend modes y pseudo-elementos para simular shaders sin WebGL.
+      </div>
+    </aside>
+
+    <main class="stage">
+      <div class="pattern-layer" aria-hidden="true"></div>
+
+      <section class="cards-container" aria-label="Tarjetas de ejemplo">
+        <article class="card card-1">
+          <div class="card-content">
+            <span>Card 01</span>
+            <h2>Puntos vivos</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lacus sed ipsum posuere.</p>
+          </div>
+        </article>
+
+        <article class="card card-2">
+          <div class="card-content">
+            <span>Card 02</span>
+            <h2>Líneas diagonales</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent commodo nibh non augue luctus.</p>
+          </div>
+        </article>
+
+        <article class="card card-3">
+          <div class="card-content">
+            <span>Card 03</span>
+            <h2>Cuadrícula suave</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida neque vel lorem facilisis.</p>
+          </div>
+        </article>
+
+        <article class="card card-4">
+          <div class="card-content">
+            <span>Card 04</span>
+            <h2>Círculos dobles</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean finibus velit sed justo cursus.</p>
+          </div>
+        </article>
+
+        <article class="card card-5">
+          <div class="card-content">
+            <span>Card 05</span>
+            <h2>Anillos solares</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat arcu at lectus fermentum.</p>
+          </div>
+        </article>
+
+        <article class="card card-6">
+          <div class="card-content">
+            <span>Card 06</span>
+            <h2>Matriz líquida</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti cras vitae justo.</p>
+          </div>
+        </article>
+
+        <article class="card card-7">
+          <div class="card-content">
+            <span>Card 07</span>
+            <h2>Pop berry</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus blandit sem id massa ultricies.</p>
+          </div>
+        </article>
+
+        <article class="card card-8">
+          <div class="card-content">
+            <span>Card 08</span>
+            <h2>Mosaico violeta</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam porta magna vel sapien viverra.</p>
+          </div>
+        </article>
+
+        <article class="card card-9">
+          <div class="card-content">
+            <span>Card 09</span>
+            <h2>Ruido oceánico</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi etiam in magna placerat.</p>
+          </div>
+        </article>
+
+        <article class="card card-10">
+          <div class="card-content">
+            <span>Card 10</span>
+            <h2>Óxido cartoon</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempor risus sed nibh aliquet.</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="empty-state" aria-live="polite">
+        <h2>Cards ocultas</h2>
+        <p>El patrón de fondo y el shader siguen activos para que puedas evaluar los efectos sobre la superficie de la UI sin los cuadros.</p>
+      </section>
+    </main>
+  </div>
+
+  <div class="ui-shader" aria-hidden="true"></div>
+
+  <script src="./js/main.js"></script>
+</body>
+</html>

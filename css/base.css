@@ -1,0 +1,107 @@
+:root {
+  --shader-opacity: 0.65;
+  --shader-blur: 0px;
+  --shader-contrast: 1.08;
+  --shader-saturate: 1.2;
+  --shader-scale: 1;
+  --panel-width: 300px;
+  --pattern-back: #111827;
+  --pattern-front: #ffffff;
+  --pattern-opacity: 0.16;
+  --pattern-spacing: 32px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(circle at 10% 0%, rgba(99, 102, 241, 0.22), transparent 32%),
+    radial-gradient(circle at 90% 95%, rgba(244, 114, 182, 0.18), transparent 30%),
+    #111827;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: var(--panel-width) 1fr;
+  min-height: 100vh;
+}
+
+.stage {
+  position: relative;
+  min-height: 100vh;
+  isolation: isolate;
+  padding: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.empty-state {
+  display: none;
+  position: relative;
+  z-index: 2;
+  width: min(760px, 100%);
+  padding: 42px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.055);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.28);
+  backdrop-filter: blur(8px);
+  animation: emptyFade 0.32s ease both;
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease,
+    background 0.28s ease,
+    border-color 0.28s ease;
+}
+
+@keyframes emptyFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.empty-state h2 {
+  margin-bottom: 12px;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.empty-state p {
+  color: rgba(255,255,255,0.72);
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.cards-hidden .empty-state {
+  display: block;
+}
+
+.hint {
+  margin-top: 14px;
+  padding: 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.06);
+  border-left: 4px solid rgba(255,255,255,0.35);
+}
